@@ -17,6 +17,33 @@ $ composer require willywes/agorasdk
 
 ## Usage
 
+``` php
+use Willywes\AgoraSDK\RtcTokenBuilder;
+
+class AgoraHelper
+{
+    public static function GetToken($user_id){
+    
+        $appID = "72fc...";
+        $appCertificate = "72fc...";
+        $channelName = "Test";
+        $uid = $user_id;
+        $uidStr = ($user_id) . '';
+        $role = RtcTokenBuilder::RoleAttendee;
+        $expireTimeInSeconds = 3600;
+        $currentTimestamp = (new \DateTime("now", new \DateTimeZone('UTC')))->getTimestamp();
+        $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
+    
+        return RtcTokenBuilder::buildTokenWithUid($appID, $appCertificate, $channelName, $uid, $role, $privilegeExpiredTs);
+    
+    }
+}
+```
+
+``` php  
+    $user = auth()->user();
+    $agora_token = AgoraHelper::GetToken($user->id);
+```
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
