@@ -1,6 +1,6 @@
 {
     "name": "willywes/agorasdk",
-    "description": ":package_description",
+    "description": "Agora.io SDK PHP",
     "license": "MIT",
     "authors": [
         {
